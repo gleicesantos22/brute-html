@@ -1005,20 +1005,20 @@
     </script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // ⏳ Revelar #esconder (com display:none)
-      setTimeout(() => {
-        const esconder = document.getElementById("esconder");
-        if (esconder) esconder.style.display = "block";
-      }, 30000);
-  
-      // ⏳ Revelar .hidden-section (com opacity/translateY)
-      setTimeout(() => {
-        const hiddenEls = document.querySelectorAll('.hidden-section');
-        hiddenEls.forEach(el => el.classList.add('animate'));
-      }, 30000);
-    });
-  </script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // ⏳ Revelar #esconder (com display:none) após 35:26
+    setTimeout(() => {
+      const esconder = document.getElementById("esconder");
+      if (esconder) esconder.style.display = "block";
+    }, 2126000); // 35 minutos e 26 segundos em milissegundos
+
+    // ⏳ Revelar .hidden-section (com opacity/translateY) após 35:26
+    setTimeout(() => {
+      const hiddenEls = document.querySelectorAll('.hidden-section');
+      hiddenEls.forEach(el => el.classList.add('animate'));
+    }, 2126000);
+  });
+</script>
 
 </body>
 
