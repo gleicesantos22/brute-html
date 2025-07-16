@@ -148,24 +148,7 @@
 
 <body class="select-none">
 
-    <!-- LINKS KITS AQUI -->
-    <script>
-        $(document).ready(function (e) {
-            const LINKSCONFIG = {
-                LINK1POTE: 'https://pay.brutehorse.co/checkout/188271611:1',
-                LINK3POTE: 'https://pay.brutehorse.co/checkout/188274332:1',
-                LINK6POTE: 'https://pay.brutehorse.co/checkout/188274365:1',
-            }
-
-
-            document.querySelectorAll("a[data-link]").forEach(link => {
-                const key = link.getAttribute("data-link");
-                if (LINKSCONFIG[key]) {
-                    link.href = LINKSCONFIG[key];
-                }
-            });
-        })
-    </script>
+   
 
 
 
