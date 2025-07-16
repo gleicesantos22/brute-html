@@ -273,7 +273,7 @@
         <h2 class="text-white text-[28.89px]/[34px] text-center lg:text-4xl font-extrabold max-w-[1173px] antialiased">
           Para empezar a tomar <span class="text-[#ffd814] text-shadow">BRUTE HORSE</span> Haz clic ahora y aprovecha esta oferta especial única por tiempo limitado
         </h2>
-        <div id="counter" class="text-3xl text-red-500 font-black">00:00</div>
+        <div id="counter" class="text-3xl text-red-500 font-black">30:00</div>
 
 
 
@@ -1004,7 +1004,21 @@
         }
     </script>
 
-
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // ⏳ Revelar #esconder (com display:none)
+      setTimeout(() => {
+        const esconder = document.getElementById("esconder");
+        if (esconder) esconder.style.display = "block";
+      }, 30000);
+  
+      // ⏳ Revelar .hidden-section (com opacity/translateY)
+      setTimeout(() => {
+        const hiddenEls = document.querySelectorAll('.hidden-section');
+        hiddenEls.forEach(el => el.classList.add('animate'));
+      }, 30000);
+    });
+  </script>
 
 </body>
 
