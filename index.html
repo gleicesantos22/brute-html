@@ -273,9 +273,7 @@
     <h2 class="text-white text-[28.89px]/[34px] text-center lg:text-4xl font-extrabold max-w-[1173px] antialiased">
       <span class="text-[#ffd814] text-shadow"></span> Haz clic ahora y aprovecha esta oferta especial única por tiempo limitado
     </h2>
-    <div id="counter" class="text-3xl text-red-500 font-black">04:59</div>
-  </div>
-</section>
+    <div id="counter" class="text-3xl text-red-500 font-black"></div>
 
 
 
@@ -1021,48 +1019,6 @@
       }, 30000);
     });
   </script>
-
-
-
-
-
-
-
-
-<script>
-  function get_time_string(timer) {
-    const minutes = Math.floor(timer / 60);
-    const seconds = timer % 60;
-
-    const formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
-    const formattedSeconds = seconds < 10 ? "0" + seconds : seconds;
-
-    return `${formattedMinutes}:${formattedSeconds}`;
-  }
-
-  function startCountdown(durationInSeconds, elementId) {
-    let timer = durationInSeconds;
-    const display = document.getElementById(elementId);
-
-    const countdown = setInterval(function () {
-      display.textContent = get_time_string(timer);
-
-      if (timer <= 0) {
-        clearInterval(countdown);
-      } else {
-        timer--;
-      }
-    }, 1000);
-  }
-
-  // Inicia a contagem quando a página carregar
-  document.addEventListener("DOMContentLoaded", function () {
-    startCountdown(299, "counter"); // 299 segundos = 04:59
-  });
-</script>
-
-
-
 
 </body>
 
