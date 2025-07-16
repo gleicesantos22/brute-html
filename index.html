@@ -18,10 +18,320 @@
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <link rel="icon" href="assets/favicon.ico">
 
-  
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <title>PF 204 - By Bloomvanta</title>
 
 
-    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <!-- Codigo Redtrack -->
+
+    <script type="text/javascript" src="https://ga.bloomvanta.org/track.js?rtkcmpid=68602104803e07dea23a475a"></script>
+
+    <!-- Final Redtrack -->
+
+
+    <!-- Google Analitics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L9H36867WH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-L9H36867WH');
+    </script>
+
+    <!-- Final Google Analitics -->
+
+    <!-- Codigo Clarity -->
+
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () {
+                (c[a].q = c[a].q || []).push(arguments)
+            };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "nqc3h4lzzq");
+    </script>
+
+    <!-- Final Codigo Clarity -->
+
+    <!-- DNS Prefetch para melhor performance -->
+    <link rel="preload"
+        href="https://cdn-customer-wt9xdbh9wjjb.i-cdn.net/1ed4a6aa-0a68-48af-8a96-e82790c32fe8/playlist.m3u8" as="fetch"
+        crossorigin="anonymous">
+    <link rel="preload" href="https://delivery.i-cdn.net/stream/vid2LXTiQUXfKBU/player.js" as="sccript"
+        crossorigin="anonymous">
+    <link rel="preload" href="https://delivery.i-cdn.net/stream/vid2LXTiQUXfKBU/ThumbnailStart.jpg" as="image"
+        crossorigin="anonymous">
+    <link rel="dns-prefetch" href="https://delivery.i-cdn.net">
+    <link rel="dns-prefetch" href="https://cdn-customer-wt9xdbh9wjjb.i-cdn.net">
+    <link rel="dns-prefetch" href="https://m3u8.strapcast.com">
+
+    <!-- STRAPCAST - Codigo Trackeamento PLAYs *PREENCHER* -->
+    <script>
+        const LEAD_VIEW_THRESHOLD = 120; // Tempo em segundos para envio do postback de Lead View
+        let vslViewSent = false;
+        let pitchViewStarted = false;
+        let leadViewSent = false;
+
+        function getParameterByName(name) {
+            const url = window.location.href;
+            const nameRegex = name.replace(/[\[\]]/g, "\\$&");
+            const regex = new RegExp("[?&]" + nameRegex + "(=([^&#]*)|&|#|$)");
+            const results = regex.exec(url);
+            return results ? decodeURIComponent(results[2].replace(/\+/g, " ")) : null;
+        }
+
+        function sendPostback(url) {
+            fetch(url)
+                .then(() => console.log(`Postback sent: ${url}`))
+                .catch(error => console.error(`Error sending postback: ${error}`));
+        }
+
+        function handleStrapCastPlay() {
+            const clickid = getParameterByName('rtkcid');
+            if (clickid) {
+                const playPostbackUrl = `https://1vuyt.ttrk.io/postback?clickid=${clickid}&type=VturbPlay`;
+                sendPostback(playPostbackUrl);
+            } else {
+                console.error('Parâmetro rtkcid não encontrado na URL para VSL - Play');
+            }
+        }
+
+        function handlePitchViewPostback() {
+            const clickid = getParameterByName('rtkcid');
+            if (clickid) {
+                const pitchViewPostbackUrl = `https://1vuyt.ttrk.io/postback?clickid=${clickid}&type=VturbPitch`;
+                sendPostback(pitchViewPostbackUrl);
+            } else {
+                console.error('Parâmetro rtkcid não encontrado na URL para VSL - Pitch View');
+            }
+        }
+
+        function handleLeadViewPostback() {
+            const clickid = getParameterByName('rtkcid');
+            if (clickid) {
+                const leadViewPostbackUrl = `https://1vuyt.rdtk.io/postback?clickid=${clickid}&type=VturbLead`;
+                sendPostback(leadViewPostbackUrl);
+            } else {
+                console.error('Parâmetro rtkcid não encontrado na URL para VSL - Lead View');
+            }
+        }
+
+        function handleVSLViewPostback() {
+            if (vslViewSent) {
+                console.log("VSL View postback already sent. Skipping...");
+                return;
+            }
+            const clickid = getParameterByName('rtkcid');
+            if (clickid) {
+                const viewPostbackUrl = `https://1vuyt.ttrk.io/postback?clickid=${clickid}&type=VSL View`;
+                sendPostback(viewPostbackUrl);
+                vslViewSent = true;
+            } else {
+                console.error('Parâmetro rtkcid não encontrado na URL para VSL View');
+            }
+        }
+
+        function setupStrapCastEvents() {
+            console.log("Configurando eventos do StrapCast...");
+
+            function waitForStrapCastPlayer() {
+                if (!window.StrapCastPlayers || Object.keys(window.StrapCastPlayers).length === 0) {
+                    console.log("Aguardando StrapCast player...");
+                    setTimeout(waitForStrapCastPlayer, 500);
+                    return;
+                }
+                const playerId = Object.keys(window.StrapCastPlayers)[0];
+                const player = window.StrapCastPlayers[playerId];
+                console.log("StrapCast player encontrado:", playerId);
+                player.addEventListener('play', function () {
+                    console.log("Player play event detected.");
+                    handleStrapCastPlay();
+                });
+                player.addEventListener('timeupdate', function () {
+                    const currentTime = player.video.currentTime;
+                    console.log(`currentTime => ${currentTime.toFixed(2)} SECONDS`);
+                    if (!leadViewSent && currentTime >= LEAD_VIEW_THRESHOLD) {
+                        console.log("LEAD_VIEW_THRESHOLD reached. Sending Lead View postback.");
+                        handleLeadViewPostback();
+                        leadViewSent = true;
+                    }
+                });
+                player.addEventListener('pitchStarted', function () {
+                    if (!pitchViewStarted) {
+                        console.log("PITCH_VIEW reached. Sending postback.");
+                        handlePitchViewPostback();
+                        pitchViewStarted = true;
+                    }
+                });
+                console.log("Eventos do StrapCast configurados com sucesso!");
+            }
+            waitForStrapCastPlayer();
+        }
+
+        function waitForVideoElement() {
+            let retryCount = 0;
+            const maxRetries = 20;
+
+            function checkForVideo() {
+                const videoElement = document.querySelector('video');
+                if (videoElement) {
+                    console.log("Elemento de vídeo encontrado, configurando eventos...");
+                    videoElement.addEventListener('play', function () {
+                        console.log("Video play event detected.");
+                        handleStrapCastPlay();
+                    });
+                    // Evento de timeupdate
+                    videoElement.addEventListener('timeupdate', function () {
+                        const currentTime = videoElement.currentTime;
+                        console.log(`currentTime => ${currentTime.toFixed(2)} SECONDS`);
+                        // Disparo de Lead View
+                        if (!leadViewSent && currentTime >= LEAD_VIEW_THRESHOLD) {
+                            console.log("LEAD_VIEW_THRESHOLD reached. Sending Lead View postback.");
+                            handleLeadViewPostback();
+                            leadViewSent = true;
+                        }
+                    });
+                    console.log("Eventos do vídeo configurados com sucesso!");
+                    return;
+                }
+                if (retryCount >= maxRetries) {
+                    console.error("Elemento de vídeo não encontrado após tentativas.");
+                    return;
+                }
+                retryCount++;
+                console.log(`Procurando elemento de vídeo... tentativa ${retryCount}`);
+                setTimeout(checkForVideo, 1000);
+            }
+            checkForVideo();
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            handleVSLViewPostback();
+            setupStrapCastEvents();
+            setTimeout(() => {
+                waitForVideoElement();
+            }, 2000);
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.body.addEventListener("click", async (event) => {
+                const link = event.target.closest("a"); // Captura o elemento <a> mais próximo do clique
+                if (!link || !link.href.includes("/click")) return; // Verifica se o link contém '/click'
+
+                event.preventDefault(); // Bloqueia a navegação imediata para garantir o rastreamento primeiro
+
+                await handlePostbackAndNavigate(link.href);
+            });
+
+            async function handlePostbackAndNavigate(href) {
+                const urlParams = new URLSearchParams(window.location.search);
+                const clickid = urlParams.get("rtkcid"); // Extrai o 'rtkcid' da URL atual
+
+                if (!clickid) {
+                    console.error("ClickID não encontrado na URL.");
+                    window.location.href = href; // Se não encontrar o ClickID, ainda abre o link na mesma aba
+                    return;
+                }
+
+                const postbackUrl = "https://1vuyt.ttrk.io/postback";
+                const postbackParams = new URLSearchParams({
+                    clickid: clickid,
+                    type: "InitiateCheckout",
+                });
+
+                try {
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 3000); // Timeout para abortar a requisição se demorar mais de 3s
+
+                    const response = await fetch(`${postbackUrl}?${postbackParams}`, {
+                        method: "GET",
+                        signal: controller.signal, // Usa o AbortController para controle de timeout
+                    });
+
+                    clearTimeout(timeoutId); // Cancela o timeout se a requisição for bem-sucedida
+
+                    if (!response.ok) {
+                        throw new Error(`Erro no postback: ${response.statusText}`);
+                    }
+
+                    console.log("Postback enviado com sucesso.");
+                } catch (error) {
+                    console.error("Erro ao enviar postback:", error);
+                } finally {
+                    window.location.href = href; // Sempre abre o link na mesma aba após o postback, independente do sucesso
+                }
+            }
+
+            // Bloqueia a abertura de links/hrefs com botão direito ou botão do meio
+            document.body.addEventListener("contextmenu", async (event) => {
+                const link = event.target.closest("a");
+                if (link && link.href.includes("/click")) {
+                    event.preventDefault();
+                    await handlePostbackAndNavigate(link.href);
+                }
+            });
+
+            document.body.addEventListener("mousedown", async (event) => {
+                if (event.button === 1) { // Botão do meio do mouse
+                    const link = event.target.closest("a");
+                    if (link && link.href.includes("/click")) {
+                        event.preventDefault();
+                        await handlePostbackAndNavigate(link.href);
+                    }
+                }
+            });
+
+            document.body.addEventListener("auxclick", async (event) => {
+                if (event.button === 1) { // Botão do meio
+                    const link = event.target.closest("a");
+                    if (link && link.href.includes("/click")) {
+                        event.preventDefault();
+                        await handlePostbackAndNavigate(link.href);
+                    }
+                }
+            });
+
+            // Corrigido para evitar acionamento ao rolar a tela em mobile
+            let touchStartY = 0;
+
+            document.body.addEventListener("touchstart", (event) => {
+                touchStartY = event.touches[0].clientY; // Armazena a posição inicial do toque
+            });
+
+            document.body.addEventListener("touchend", async (event) => {
+                const link = event.target.closest("a");
+                if (!link || !link.href.includes("/click")) return;
+
+                // Verifica se o usuário realmente clicou e não apenas rolou a tela
+                if (Math.abs(event.changedTouches[0].clientY - touchStartY) > 10) {
+                    return; // Se a diferença na posição Y for maior que 10px, foi um swipe, não um clique
+                }
+
+                event.preventDefault();
+                await handlePostbackAndNavigate(link.href);
+            });
+        });
+    </script>
+
+
+    <!-- Final Codigo Trackeamento PLAYs -->
+
 
 
 
